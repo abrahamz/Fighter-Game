@@ -1,0 +1,9 @@
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\FighterGame.exe
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\FighterGame.pdb
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\obj\x86\Debug\FighterGame.exe
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\obj\x86\Debug\FighterGame.pdb
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\Content\Attack.Block.xnb
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\Content\char1.xnb
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\Content\stickfigure.xnb

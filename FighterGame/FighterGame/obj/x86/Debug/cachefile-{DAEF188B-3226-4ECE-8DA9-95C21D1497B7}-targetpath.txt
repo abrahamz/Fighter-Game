@@ -1,0 +1,3 @@
+Content\Attack.Block.xnb
+Content\char1.xnb
+Content\stickfigure.xnb
