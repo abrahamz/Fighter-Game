@@ -32,7 +32,7 @@ namespace FighterGame
         Vector2 jump = new Vector2(0, 25);
         
         //User input
-        KeyboardState oldKeyState;
+        public static KeyboardState oldKeyState;
 
         Dictionary<string, Rectangle> spriteRects = new Dictionary<string, Rectangle>();
         Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>();
@@ -111,28 +111,42 @@ namespace FighterGame
 
         private void UpdateKey()
         {
-            KeyboardState newState = Keyboard.GetState();
+            KeyboardState newKeyState = Keyboard.GetState();
+
+            //Is the KAY key down?!
+            if (newKeyState.IsKeyDown(Keys.K))
+            {
+                spriteDict["player"].state.attack = true;
+            }
+
+            //Is the JAY key down?!
+            if (newKeyState.IsKeyDown(Keys.J))
+            {
+                spriteDict["player"].state.defend = true;
+            }
 
             //Is the DUBAU key down?! 
-            if (newState.IsKeyDown(Keys.W))
+            if (newKeyState.IsKeyDown(Keys.W))
             {
                 if (!oldKeyState.IsKeyDown(Keys.W))
                     spriteDict["player"].state.jump = true;
             }
 
             //Is the EH key down?!
-            if (newState.IsKeyDown(Keys.A))
+            if (newKeyState.IsKeyDown(Keys.A))
             {
                 spriteDict["player"].state.walk = true;
                 spriteDict["player"].state.direction = -1;
             }
 
             //Is the DEE key down?!
-            if (newState.IsKeyDown(Keys.D))
+            if (newKeyState.IsKeyDown(Keys.D))
             {
                 spriteDict["player"].state.walk = true;
                 spriteDict["player"].state.direction = 1;
             }
+
+            oldKeyState = newKeyState;
         }
         /// <summary>
         /// This is called when the game should draw itself.

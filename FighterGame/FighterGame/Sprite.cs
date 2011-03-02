@@ -22,9 +22,9 @@ namespace FighterGame
         int row = 0;
 
         //Jumping
-        public int maxJumpHeight = 150;
+        public int maxJumpHeight = 225;
         public int currentJumpHeight = 0;
-        public int jumpSpeed = 5;
+        public int jumpSpeed = 7;
         public int jumpDirection = -1;
 
         int spriteWidth = 100;
@@ -41,20 +41,17 @@ namespace FighterGame
         public Sprite(string name)
         {
             this.name = name;
-            //rect = new Rectangle(spriteWidth * col, spriteWidth * row, spriteWidth, spriteHeight);
         }
         public Sprite(string name, int row)
         {
             this.name = name;
             this.row = row;
-            // rect = new Rectangle(spriteWidth * col, spriteWidth * row, spriteWidth, spriteHeight);
         }
         public Sprite(string name, int row, Vector2 position)
         {
             this.name = name;
             this.row = row;
             this.position = position;
-            //rect = new Rectangle(spriteWidth * col, spriteWidth * row, spriteWidth, spriteHeight);
         }
         public Sprite(string name, int row, int minStep, int maxStep)
         {
@@ -62,7 +59,6 @@ namespace FighterGame
             this.row = row;
             this.minStep = minStep;
             this.maxStep = maxStep;
-           // rect = new Rectangle(spriteWidth * col, spriteWidth * row, spriteWidth, spriteHeight);
         }
         public Sprite(string name, int row, int spriteWidth, int spriteHeight, int minStep, int maxStep)
         {
@@ -70,7 +66,6 @@ namespace FighterGame
             this.row = row;
             this.spriteWidth = spriteWidth;
             this.spriteHeight = spriteHeight;
-          // rect = new Rectangle(spriteWidth * col, spriteWidth * row, spriteWidth, spriteHeight);
         }
 
         public void increment()
@@ -90,6 +85,12 @@ namespace FighterGame
         {
             switch (state.getAction())
             {
+                case "defend":
+                    defend();
+                    break;
+                case "attack":
+                    attack();
+                    break;
                 case "walk":
                     position.X += speed * state.direction;
                     state.walk = false;
@@ -99,6 +100,33 @@ namespace FighterGame
                     break;
             }
 
+        }
+        public void defend()
+        {
+            row = 0;
+
+            //If the key has been released, then smoothly transition out of defense state
+            if (!Game1.oldKeyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.J) & col >= 5 & col <= 10)
+                col++;
+            //Overwriting maxstep here to make it 5 so block can stick
+            else if (col < 5)
+                col++;
+            else if (col != 5)
+            {
+                col = 0;
+                state.defend = false;
+            }
+        }
+        public void attack()
+        {
+            row = 1;
+            if (col != maxStep)
+                col++;
+            else
+            {
+                col = 0;
+                state.attack = false;
+            }
         }
         public void jump()
         {
