@@ -8,6 +8,9 @@ namespace FighterGame
 {
     class State
     {
+        /*Show or Hidden*/
+        public bool shown = true;
+
         /*Fighting states*/
         public bool attack = false;
         public bool defend = false;
@@ -16,7 +19,6 @@ namespace FighterGame
         public bool walk = false;
         public bool jump = false;
         public int direction = 1; //or -1
-        
 
         public string getAction()
         {
@@ -31,5 +33,14 @@ namespace FighterGame
             else
                 return "none";
         }
+
+        public void clear()
+        {
+            attack = false;
+            walk = false;
+            jump = false;
+            defend = false;
+        }
+
     }
 }

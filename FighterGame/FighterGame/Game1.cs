@@ -16,13 +16,12 @@ namespace FighterGame
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        //Floor
+        public static int floor = 300;
+
         //Movement speed
         Vector2 walkspeed = new Vector2(5, 0);
         Vector2 jumpspeed = new Vector2(0, 25);
-
-        //Textures
-        Texture2D character;
-        Texture2D enemy;
 
         //Timing
         float timer = 0f;
@@ -31,13 +30,11 @@ namespace FighterGame
         //Movement
         Vector2 walk = new Vector2(5, 0);
         Vector2 jump = new Vector2(0, 25);
-        Vector2 position = new Vector2(0, 0);
-
+        
         //User input
         KeyboardState oldKeyState;
 
         Dictionary<string, Rectangle> spriteRects = new Dictionary<string, Rectangle>();
-        Dictionary<string, State> charStates = new Dictionary<string, State>();
         Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>();
 
         GraphicsDeviceManager graphics;
@@ -50,8 +47,8 @@ namespace FighterGame
 
             /*Initialize Dictionaries*/
             //Sprites
-            spriteDict["player"] = new Sprite("Attack.Block", 1);
-            spriteDict["enemy"] = new Sprite("Attack.Block", 0, 0, 5);
+            spriteDict["player"] = new Sprite("Attack.Block", 1, new Vector2(25, floor));
+            spriteDict["enemy"] = new Sprite("Attack.Block", 0, new Vector2(200, floor));
         }
 
         /// <summary>
@@ -98,13 +95,17 @@ namespace FighterGame
         {
             timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            foreach (Sprite sprite in spriteDict.Values) 
+            if (timer >= 25)
             {
-                switch (sprite.state.getAction())
+                timer = 0;
+                foreach (Sprite sprite in spriteDict.Values)
                 {
-                    /*Gonna do some stuff..*/
+                    sprite.execute();
                 }
             }
+
+            UpdateKey();
+            base.Update(gameTime);
             
         }
 
@@ -116,29 +117,22 @@ namespace FighterGame
             if (newState.IsKeyDown(Keys.W))
             {
                 if (!oldKeyState.IsKeyDown(Keys.W))
-                    charStates["player"].jump = true;
+                    spriteDict["player"].state.jump = true;
             }
-            else 
-            { charStates["player"].jump = false; }
-
-            //Is the DEE key down?!
-            if (newState.IsKeyDown(Keys.D))
-            {
-                charStates["player"].walk = true;
-                charStates["player"].direction = 1;
-            }
-            else
-            { charStates["player"].walk = false; }
 
             //Is the EH key down?!
             if (newState.IsKeyDown(Keys.A))
             {
-                charStates["player"].walk = true;
-                charStates["player"].direction = -1;
+                spriteDict["player"].state.walk = true;
+                spriteDict["player"].state.direction = -1;
             }
-            else
-            { charStates["player"].walk = false; }
-            
+
+            //Is the DEE key down?!
+            if (newState.IsKeyDown(Keys.D))
+            {
+                spriteDict["player"].state.walk = true;
+                spriteDict["player"].state.direction = 1;
+            }
         }
         /// <summary>
         /// This is called when the game should draw itself.
@@ -153,7 +147,11 @@ namespace FighterGame
             //Draw the sprite
             //Rectangle of section
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            spriteBatch.Draw(/*character, position, rect, Color.White*/);
+            foreach (Sprite sprite in spriteDict.Values)
+            {
+                if (sprite.state.shown)
+                    spriteBatch.Draw(sprite.texture, sprite.position, sprite.rect, Color.White);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
