@@ -7,3 +7,4 @@ c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\Figh
 c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\Content\Attack.Block.xnb
 c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\Content\char1.xnb
 c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\Content\stickfigure.xnb
+c:\users\mark\documents\visual studio 2010\Projects\FighterGame\FighterGame\FighterGame\bin\x86\Debug\Content\enemy-attack-block.xnb

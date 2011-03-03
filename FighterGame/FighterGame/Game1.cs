@@ -48,7 +48,7 @@ namespace FighterGame
             /*Initialize Dictionaries*/
             //Sprites
             spriteDict["player"] = new Sprite("Attack.Block", 1, new Vector2(25, floor));
-            spriteDict["enemy"] = new Sprite("Attack.Block", 0, new Vector2(200, floor));
+            spriteDict["enemy"] = new Sprite("enemy-attack-block", 0, new Vector2(200, floor));
         }
 
         /// <summary>

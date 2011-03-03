@@ -86,13 +86,22 @@ namespace FighterGame
             switch (state.getAction())
             {
                 case "defend":
+                    if (state.jump)
+                        jump();
                     defend();
                     break;
                 case "attack":
+                    if (state.jump)
+                        jump();
                     attack();
                     break;
                 case "walk":
-                    position.X += speed * state.direction;
+                    if (state.jump)
+                        jump();
+                    else if (position.Y == Game1.floor)
+                    {
+                        position.X += speed * state.direction;
+                    }
                     state.walk = false;
                     break;
                 case "jump":
